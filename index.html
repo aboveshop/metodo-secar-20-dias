@@ -3434,6 +3434,20 @@
     <script data-no-minify="1" async
         src="https://metodosecarem20dias.com/wp-content/plugins/wp-rocket/assets/js/lazyload/17.8.3/lazyload.min.js">
     </script>
+    <script>
+        const queryString = new URLSearchParams(window.location.search);
+
+        const links = document.querySelectorAll("a");
+        for (let link of links) {
+            try {
+                const url = new URL(link.href);
+                queryString.forEach((v,k,p) => url.searchParams.append(k,v));
+                link.href = url.toString();
+            } catch (err) {
+                console.debug('err fowarding -> ', err.message)
+            }      
+        }
+    </script>
 </body>
 
 </html>
